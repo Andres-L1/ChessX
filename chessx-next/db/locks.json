@@ -1,0 +1,59 @@
+[
+  {
+    "id": "lock_JAWwFCxQP2",
+    "token": "9j7ZX2gu8hIt2zWr5iWH",
+    "title": "zbfbfd",
+    "description": "",
+    "amount_cents": 50000,
+    "currency": "eur",
+    "status": "locked",
+    "created_at": "2026-03-13T11:07:30.224Z",
+    "updated_at": "2026-03-13T11:07:30.224Z",
+    "client_email": null,
+    "file": {
+      "type": "upload",
+      "path": "C:\\Users\\tomih\\Desktop\\ChessX\\uploads\\ca2ea484ba6432c60b93ee92d2f8c174",
+      "original_name": "logo_sin_fondo.png",
+      "mime": "image/png",
+      "size": 309433
+    },
+    "stripe": {}
+  },
+  {
+    "id": "lock_9mrTMLwVjx",
+    "token": "VylWeaZiB1hhg2xr5HZO",
+    "title": "Test Link Job",
+    "description": "This is a test for link delivery.",
+    "amount_cents": 1000,
+    "currency": "eur",
+    "status": "locked",
+    "created_at": "2026-03-13T11:27:54.495Z",
+    "updated_at": "2026-03-13T11:27:54.495Z",
+    "client_email": null,
+    "file": {
+      "type": "link",
+      "url": "https://example.com/"
+    },
+    "stripe": {}
+  },
+  {
+    "id": "lock_zBZ3X5CegW",
+    "token": "jo5ubI3hkcZwA9BaCBb8",
+    "title": "prueba",
+    "description": "",
+    "amount_cents": 2000,
+    "currency": "eur",
+    "status": "locked",
+    "created_at": "2026-03-13T11:30:33.464Z",
+    "updated_at": "2026-03-13T11:30:33.464Z",
+    "client_email": null,
+    "file": {
+      "type": "upload",
+      "path": "C:\\Users\\tomih\\Desktop\\ChessX\\uploads\\73b9e83f895f9c27c4cac4fce4fc5271",
+      "original_name": "logo_sin_fondo.png",
+      "mime": "image/png",
+      "size": 309433
+    },
+    "stripe": {}
+  }
+]

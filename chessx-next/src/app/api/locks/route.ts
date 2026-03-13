@@ -36,7 +36,7 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({ message: 'Falta el archivo' }, { status: 400 });
       }
 
-      const uploadsDir = path.join(process.cwd(), '..', 'uploads');
+      const uploadsDir = path.join(process.cwd(), 'uploads');
       await fs.ensureDir(uploadsDir);
 
       const filename = `${nanoid(10)}_${file.name.replace(/\s+/g, '_')}`;

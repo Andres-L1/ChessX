@@ -3,7 +3,8 @@ import path from 'path';
 import { Lock } from './types';
 
 // We point to the same DB as the original app for continuity
-const dbPath = path.join(process.cwd(), '..', 'db', 'locks.json');
+// DB path relative to project root
+const dbPath = path.join(process.cwd(), 'db', 'locks.json');
 
 async function ensureDb() {
   try {
