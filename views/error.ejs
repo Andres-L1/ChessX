@@ -1,0 +1,18 @@
+<%- include('partials/head', { title }) %>
+<%- include('partials/nav') %>
+
+<main class="container">
+  <div class="form-card text-center">
+    <div class="error-icon">!</div>
+    <div class="pill">Error</div>
+    <h1><%= title %></h1>
+    <p><%= message %></p>
+
+    <div style="margin-top: 32px;">
+      <a href="javascript:history.back()" class="btn primary">Volver atrás</a>
+      <a href="/" class="btn ghost">Ir al inicio</a>
+    </div>
+  </div>
+</main>
+
+<%- include('partials/footer') %>

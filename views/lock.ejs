@@ -1,0 +1,76 @@
+<%- include('partials/head', { title }) %>
+<%- include('partials/nav') %>
+
+<main class="container">
+  <div class="lock-container">
+    <div class="lock-card">
+      <header class="lock-header">
+        <div class="pill"><%= lock.status === 'paid' ? 'Archivo Desbloqueado' : 'Archivo Bloqueado' %></div>
+        <h1><%= lock.title %></h1>
+        <% if (lock.description) { %>
+          <p class="description"><%= lock.description %></p>
+        <% } %>
+      </header>
+
+      <div class="lock-body">
+        <% if (lock.status === 'paid') { %>
+          <div class="success-notice">
+            <div class="success-icon-small">✓</div>
+            <div>
+              <h3>¡Pago confirmado!</h3>
+              <p>Tu archivo ya está disponible para descargar.</p>
+            </div>
+          </div>
+          
+          <div class="file-box">
+            <div class="file-info">
+              <span class="file-icon">📄</span>
+              <div>
+                <div class="file-name"><%= lock.file.type === 'upload' ? lock.file.original_name : 'Enlace de entrega' %></div>
+                <div class="file-meta">
+                  <% if (lock.file.type === 'upload') { %>
+                    <%= (lock.file.size / (1024 * 1024)).toFixed(2) %> MB
+                  <% } else { %>
+                    Enlace externo
+                  <% } %>
+                </div>
+              </div>
+            </div>
+            <a href="/download/<%= lock.token %>" class="btn primary large">Descargar Archivo</a>
+          </div>
+        <% } else { %>
+          <div class="price-display">
+            <div class="price-label">Importe a pagar</div>
+            <div class="price-value"><%= formatAmount(lock.amount_cents, lock.currency) %></div>
+          </div>
+
+          <div class="payment-box">
+            <% if (stripeReady) { %>
+              <form action="/api/checkout/<%= lock.token %>" method="POST">
+                <button type="submit" class="btn primary large full-width">Pagar y Desbloquear</button>
+              </form>
+              <p class="helper text-center" style="margin-top: 12px;">Pago seguro procesado por Stripe</p>
+            <% } else { %>
+              <div class="error-notice">
+                Error: El sistema de pagos no está configurado.
+              </div>
+            <% } %>
+          </div>
+        <% } %>
+      </div>
+      
+      <footer class="lock-footer">
+        <div class="detail-row">
+          <span>ID de entrega:</span>
+          <span><%= lock.id %></span>
+        </div>
+        <div class="detail-row">
+          <span>Fecha:</span>
+          <span><%= new Date(lock.created_at).toLocaleDateString('es-ES') %></span>
+        </div>
+      </footer>
+    </div>
+  </div>
+</main>
+
+<%- include('partials/footer') %>

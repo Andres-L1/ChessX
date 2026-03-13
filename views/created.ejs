@@ -1,0 +1,56 @@
+<%- include('partials/head', { title }) %>
+<%- include('partials/nav') %>
+
+<main class="container">
+  <div class="form-card text-center">
+    <div class="success-icon">✓</div>
+    <div class="pill">Candado Creado</div>
+    <h1>¡Todo listo para cobrar!</h1>
+    <p>Envía este enlace a tu cliente. Una vez que paguen los <strong><%= formatAmount(lock.amount_cents, lock.currency) %></strong>, podrán acceder al archivo automáticamente.</p>
+
+    <div class="share-box">
+      <label>Copia y envía este link:</label>
+      <div class="copy-row">
+        <input type="text" id="share-url" value="<%= baseUrl %>/lock/<%= lock.token %>" readonly />
+        <button class="btn primary" onclick="copyUrl()">Copiar</button>
+      </div>
+    </div>
+
+    <div class="lock-preview-mini">
+      <h3>Resumen del Candado</h3>
+      <div class="lock-details">
+        <div><strong>Trabajo:</strong> <%= lock.title %></div>
+        <div><strong>Importe:</strong> <%= formatAmount(lock.amount_cents, lock.currency) %></div>
+        <div><strong>Estado:</strong> <span class="badge"><%= lock.status %></span></div>
+      </div>
+    </div>
+
+    <div class="actions-row" style="margin-top: 32px; display: flex; gap: 12px; justify-content: center;">
+      <a href="/lock/<%= lock.token %>" class="btn ghost">Ver como cliente</a>
+      <a href="/create" class="btn ghost">Crear otro</a>
+    </div>
+  </div>
+</main>
+
+<script>
+  function copyUrl() {
+    const copyText = document.getElementById("share-url");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(copyText.value);
+    
+    const btn = event.target;
+    const originalText = btn.innerText;
+    btn.innerText = "¡Copiado!";
+    btn.style.background = "#4CAF50";
+    btn.style.color = "white";
+    
+    setTimeout(() => {
+      btn.innerText = originalText;
+      btn.style.background = "";
+      btn.style.color = "";
+    }, 2000);
+  }
+</script>
+
+<%- include('partials/footer') %>

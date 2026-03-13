@@ -1,0 +1,32 @@
+<%- include('partials/head', { title }) %>
+<%- include('partials/nav') %>
+
+<main class="container">
+  <div class="form-card text-center">
+    <div class="success-icon">✓</div>
+    <div class="pill">Pago Exitoso</div>
+    <h1>¡Gracias por tu pago!</h1>
+    <p>El archivo para <strong><%= lock.title %></strong> ha sido desbloqueado con éxito.</p>
+
+    <div class="file-box" style="margin: 32px 0;">
+      <a href="/download/<%= lock.token %>" class="btn primary large full-width">Descargar Ahora</a>
+    </div>
+
+    <div class="receipt-box text-left">
+      <h3>Detalles de la transacción</h3>
+      <div class="lock-details">
+        <div><strong>Importe:</strong> <%= formatAmount(lock.amount_cents, lock.currency) %></div>
+        <% if (session && session.customer_details) { %>
+          <div><strong>Enviado a:</strong> <%= session.customer_details.email %></div>
+        <% } %>
+        <div><strong>Fecha:</strong> <%= new Date().toLocaleDateString('es-ES') %></div>
+      </div>
+    </div>
+
+    <div style="margin-top: 32px;">
+      <a href="/" class="btn ghost">Volver al inicio</a>
+    </div>
+  </div>
+</main>
+
+<%- include('partials/footer') %>
